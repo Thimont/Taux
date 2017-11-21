@@ -10,29 +10,29 @@ import java.util.Collection;
 public class TauxBean implements TauxItf {
     @PersistenceContext (unitName="tauxPU")
     private EntityManager em;
-    private double taux;
+    private float taux;
     private TauxEntity tauxEntity;
 
-    public double conversion(String useMonnaieA, String useMonnaieB, double unMontant) throws Exception {
+    public float conversion(String useMonnaieA, String useMonnaieB, float unMontant) throws Exception {
         try {
-            taux = (double)em.createQuery("SELECT t.taux from TauxEntity t WHERE t.monnaieA=:unParamA and t.monnaieB=:unParamB").
+            taux = (float)em.createQuery("SELECT t.taux from TauxEntity t WHERE t.monnaieA=:unParamA and t.monnaieB=:unParamB").
                     setParameter("unParamA", useMonnaieA).
                     setParameter("unParamB", useMonnaieB).
                     getSingleResult();
 
             return taux * unMontant;
         } catch (NoResultException e) {
-            System.err.println("Aucun résultat");
+            System.err.println("Aucun rÃ©sultat");
             e.printStackTrace();
-            return -1.0;
+            return -1.0f;
         } catch (NonUniqueResultException ne) {
-            System.err.println("Pas de résultat unique");
+            System.err.println("Pas de rÃ©sultat unique");
             ne.printStackTrace();
-            return -2.0;
+            return -2.0f;
         }
     }
 
-    public void changer(String uneMonnaieA, String uneMonnaieB, double nouveauTaux) throws Exception {
+    public void changer(String uneMonnaieA, String uneMonnaieB, float nouveauTaux) throws Exception {
         try {
             tauxEntity = (TauxEntity) em.createQuery("SELECT t from TauxEntity t WHERE t.monnaieA=:unParamA and t.monnaieB=:unParamB").
                     setParameter("unParamA", uneMonnaieA).
@@ -41,10 +41,10 @@ public class TauxBean implements TauxItf {
 
             tauxEntity.setTaux(nouveauTaux);
         } catch (NoResultException e) {
-            System.err.println("Aucun résultat");
+            System.err.println("Aucun rÃ©sultat");
             e.printStackTrace();
         } catch (NonUniqueResultException ne) {
-            System.err.println("Pas de résultat unique");
+            System.err.println("Pas de rÃ©sultat unique");
             ne.printStackTrace();
         }
     }

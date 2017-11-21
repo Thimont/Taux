@@ -5,17 +5,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mpgervai.TAUX")
+@Table(name="TAUX")
 public class TauxEntity {
     private int id;
     private String monnaieA;
     private String monnaieB;
-    private double taux;
+    private float taux;
 
     public TauxEntity() {
     }
 
-    public TauxEntity(int id, String monnaieA, String monnaieB, double taux) {
+    public TauxEntity(int id, String monnaieA, String monnaieB, float taux) {
         this.id = id;
         this.monnaieA = monnaieA;
         this.monnaieB = monnaieB;
@@ -47,11 +47,11 @@ public class TauxEntity {
         this.monnaieB = monnaieB;
     }
 
-    public double getTaux() {
+    public float getTaux() {
         return taux;
     }
 
-    public void setTaux(double taux) {
+    public void setTaux(float taux) {
         this.taux = taux;
     }
 }

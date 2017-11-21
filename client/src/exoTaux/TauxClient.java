@@ -16,16 +16,9 @@ public class TauxClient {
             ex.printStackTrace();
         }
 
-        double valeurConvertie = refBeanTaux.conversion("euros", "dollars", 1.50);
-        System.out.println("Conversion de 1.50 euros en dollars : " + valeurConvertie);
+//        float valeurConvertie = refBeanTaux.conversion("euros", "dollars", 1.50f);
+//        System.out.println("Conversion de 1.50 euros en dollars : " + valeurConvertie);
 
-        /*Collection<String> lesTitres = refBeanTaux.getAllTitle();
-        for (Iterator i = lesTitres.iterator() ; i.hasNext() ; )
-        {
-            String unTitre = (String) i.next();
-            System.out.println(unTitre);
-        }*/
-
-        //refBeanTaux.changer("dollars", "euros", 0.90);
+        refBeanTaux.changer("dollars", "euros", 0.90f);
     }
 }
